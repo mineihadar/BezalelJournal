@@ -246,7 +246,7 @@ a {
   top: 0;
   left: 70px;
   width: 43vw;
-  max-height: calc(100vh - 118px);
+  max-height: calc(100vh - 10%);
 }
 
 .section-content-container {
@@ -528,20 +528,10 @@ a {
   margin-bottom: 0px;
 }
 
-/* .about-yalkut {
-  display: flex;
-  align-items: flex-start;
-  margin-right: 3vw;
-  width: 50%;
-  height: 100vh; 
-} */
-
 .about-yalkut {
-  /* padding: 20px 20px 0px 20px; */
   display: flex;
   align-items: flex-start;
   margin-right: 0.5vw;
-  /* overflow-y: auto; */
   width: 80%;
   height: 100vh; /* Set height to full viewport height */
 }
@@ -618,7 +608,7 @@ a {
     padding: 0px 10px 0px 20px;
     overflow-y: auto;
     height: 100%;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 120px);
     overflow-x: hidden;
   }
 
@@ -646,11 +636,10 @@ a {
   }
 
   .edit-details {
-    overflow-y: auto;
     flex-direction: column;
     margin-right: 1vw;
     width: 100%;
-    height: 100vh;
+    height: auto;
   }
 
   .name-editor {
@@ -675,6 +664,7 @@ a {
   .about-edit {
     width: 100%;
     padding: 10px 10px 0px 10px;
+    height: auto;
     overflow-y: hidden;
   }
 
@@ -706,6 +696,8 @@ a {
     flex-direction: column;
     width: 100%;
     margin-right: 40px;
+    height: auto; /* Adjust height to content */
+    max-height: none; /* Remove max height restriction */
   }
 
   .article-section {
@@ -713,7 +705,8 @@ a {
     /* flex-direction: column; */
     justify-content: flex-end;
     width: 100vw;
-    height: auto;
+    max-height: none;
+    height: auto; /* Adjust height to content */
     margin-bottom: 20px;
   }
 
@@ -732,7 +725,8 @@ a {
     top: 0;
     width: 90%;
     text-align: right;
-    max-height: 100%;
+    height: auto; /* Adjust height to content */
+    max-height: none; /* Remove max height restriction */
   }
 
   .section-content-container {
@@ -757,16 +751,17 @@ a {
   }
 
   .about-yalkut {
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-right: 0vw;
+    height: auto;
   }
 
   .yalkut-text {
-    overflow: hidden;
+    overflow-y: hidden;
     font-size: 13.6px;
+    height: auto; /* Ensure it grows with content */
   }
 
   .department-title {
@@ -776,7 +771,6 @@ a {
 
   .all-departments {
     position: absolute;
-    /* display: none; */
   }
 
   .about-paragraph {
@@ -789,5 +783,13 @@ a {
   .indent-paragraph {
     margin-right: 15px;
     font-size: 16.8px;
+  }
+
+  .department-container {
+    cursor: grab; /* Indicate that the element is draggable */
+  }
+
+  .department-container:active {
+    cursor: grabbing; /* Change cursor when dragging */
   }
 }

@@ -70,12 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
 function adjustAllSections() {
   const minWidth = 1051;
   const sections = document.querySelectorAll(".article-section");
-  sections.forEach((section) => {
-    adjustTitleHeight(section);
-    if (window.innerWidth >= minWidth) {
+  if (window.innerWidth >= minWidth) {
+    sections.forEach((section) => {
+      adjustTitleHeight(section);
       adjustElementHeight(section);
-    }
-  });
+    });
+  }
 }
 
 // Initial adjustment for all sections
@@ -86,15 +86,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Add event listener for window resize
 window.addEventListener("resize", () => {
-  const minWidth = 391;
-
-  const sections = document.querySelectorAll(".article-section");
-  sections.forEach((section) => {
-    adjustTitleHeight(section);
-    if (window.innerWidth >= minWidth) {
+  const minWidth = 1051;
+  if (window.innerWidth >= minWidth) {
+    const sections = document.querySelectorAll(".article-section");
+    sections.forEach((section) => {
+      adjustTitleHeight(section);
       adjustElementHeight(section);
-    }
-  });
+    });
+  }
+
   positionDepartments();
 });
 
