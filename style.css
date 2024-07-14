@@ -1,0 +1,793 @@
+@font-face {
+  font-family: "HaimG";
+  src: url("./fonts/HaimSoftG_Regular.woff") format("woff");
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+}
+
+@font-face {
+  font-family: "Narkiss-Extended-Regular";
+  src: url("./fonts/NarkissBlockExtendedTRIAL-Regular.woff") format("woff");
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+}
+
+@font-face {
+  font-family: "Narkiss-Extended-Medium";
+  src: url("./fonts/NarkissBlockExtendedTRIAL-Medium.woff") format("woff");
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                                'embedded-opentype', and 'svg' */
+}
+
+body {
+  background-color: #4424c4;
+  margin: 20px 0px;
+  overflow: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box; /* Prevent padding from enlarging elements */
+}
+
+* {
+  margin: 0; /* Remove extra margin from everything (body, headings, etc...) */
+}
+
+img {
+  max-width: 100%; /* Don't let images be more than their container's width */
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word; /* Break long words in headings & paragraphs */
+  font-weight: normal;
+}
+
+ul {
+  /* Don't style unordered lists (good for nav menus!) */
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  /* No blue links! */
+  color: inherit;
+  text-decoration: none; /* no underline */
+}
+
+.wrapper {
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 40px 0px 40px;
+}
+
+.menu {
+  display: flex;
+  width: 34%;
+  font-size: 17px;
+  font-family: "Narkiss-Extended-Regular";
+  color: #f3f2f6;
+  justify-content: space-between;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.menu-item:hover {
+  color: #ebff00;
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 10px;
+}
+
+.chosen {
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 10px;
+  color: #ebff00;
+}
+
+.main-content {
+  padding: 35px 40px 0px 20px;
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.sheet-container {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+  transform-origin: right top; /* Ensure rotation around the left center */
+}
+
+.sheet-phantom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.sheet-container-content {
+  transition: transform 0.3s ease-in-out;
+  transform-origin: right top; /* Ensure rotation around the left center */
+}
+
+.sheet-phantom:hover + .sheet-container-content {
+  transform: rotate(90deg) translateX(100%);
+  writing-mode: sideways-rl;
+}
+
+.sheet-title {
+  font-family: "HaimG";
+  font-size: 64px;
+  padding: 25px;
+  background-color: #f3f2f6;
+  border: 1px solid #1f1f1f;
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+}
+
+.sheet-date {
+  font-family: "Narkiss-Extended-Regular";
+  font-size: 16px;
+  color: #f3f2f6;
+  background-color: #1f1f1f;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0deg); /* Ensure it's not rotated */
+  width: 112px; /* Ensures it takes the full width of the container */
+}
+
+.sheet-date p {
+  margin: 0;
+  text-align: center;
+}
+
+.article-title {
+  color: #1f1f1f;
+  width: 40%;
+  /* transform: rotate(5deg); */
+  padding: 20px 20px 0px 0px;
+  cursor: pointer;
+  transform: rotate(4deg);
+  transition: transform 0.2s;
+}
+
+.article-title:hover {
+  transform: rotate(1deg);
+  cursor: pointer;
+}
+
+.article-title h1 {
+  font-family: "HaimG";
+  font-size: 101px;
+  -webkit-text-stroke: 1px #1f1f1f;
+}
+
+.article-title p {
+  font-family: "Narkiss-Extended-Regular";
+  font-size: 20px;
+  color: #ebff00;
+}
+
+.article-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  margin-right: auto;
+}
+
+.article-section {
+  position: relative;
+  transition: left 1s ease-in-out;
+  transition: all 250ms;
+  min-width: 52px;
+  margin-left: 4px;
+  cursor: pointer;
+  /* height: 100vh; Set to full viewport height */
+  display: flex;
+  align-items: stretch; /* Stretch children to equal height */
+  max-height: 84.5vh;
+  /* top: 0px; */
+}
+
+.article-section:hover {
+  right: 10px;
+}
+
+.section-title {
+  display: flex;
+  background-color: #1f1f1f;
+  color: #f3f2f6;
+  font-family: "HaimG";
+  font-size: 21px;
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+  padding: 20px 22px;
+  height: auto; /* Ensure the title height is based on content */
+}
+
+.section-title-small {
+  display: none;
+}
+
+.section-content {
+  background-color: #f3f2f6;
+  color: #1f1f1f;
+  border: solid 1px #1f1f1f;
+  font-size: 15.7px;
+  font-family: "Narkiss-Extended-Regular";
+  line-height: 1.6;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  left: 70px;
+  width: 43vw;
+  max-height: calc(100vh - 118px);
+}
+
+.section-content-container {
+  padding: 20px 30px 0px 30px;
+}
+
+.section-image-container {
+  padding: 0px 0px 0px 0px;
+}
+
+.section-content p {
+  margin-bottom: 20px;
+}
+
+.special {
+  font-family: "HaimG";
+  font-size: 64px;
+  line-height: 0.9em;
+}
+
+.indent-paragraph {
+  margin-right: 30px;
+  font-size: 19.8px;
+}
+
+.bold-text {
+  font-family: "Narkiss-Extended-Medium";
+  font-weight: bold;
+}
+
+.english-text {
+  direction: ltr;
+}
+
+.random-position {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+}
+
+.bib-number {
+  display: inline-block;
+  border: 1px #1f1f1f solid;
+  border-radius: 50%;
+  background-color: #ebff00;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.25em; /* Ensure the text is vertically centered */
+  text-align: center; /* Center the text horizontally */
+  font-family: "Narkiss-Extended-Medium";
+  font-size: 15.7px;
+}
+
+.opacity-section {
+  opacity: 10%;
+}
+
+.footer {
+  position: fixed; /* Fixed position to stay at the bottom */
+  bottom: 0; /* Place at the bottom */
+  left: 0;
+  right: 0;
+  height: 93vh; /* Full height of the footer */
+  width: 100vw;
+  background-color: #ebff00;
+  transform: translateY(calc(100% - 25px)); /* Initially only show 15px */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for sliding up */
+  cursor: pointer; /* Indicate that it's clickable */
+  z-index: 101;
+  padding: 20px 60px;
+  overflow-x: auto;
+}
+
+.footer:hover {
+  transform: translateY(calc(100% - 95px)); /* Initially only show 15px */
+}
+
+.bib {
+  background-color: #ebff00;
+}
+
+.bib-title {
+  color: #ebff00;
+}
+
+.bib-list {
+  display: flex;
+  flex-direction: column;
+  /* height: 215vh; */
+}
+
+.footer p {
+  font-family: "Narkiss-Extended-Regular";
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.bib-object {
+  display: flex;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.bib-info {
+  display: flex;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.bib-number-origin {
+  display: inline-block;
+  /* border: 1px #1f1f1f solid; */
+  border: 1px solid #1f1f1f;
+  border-radius: 100%;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.25em; /* Ensure the text is vertically centered */
+  text-align: center; /* Center the text horizontally */
+  font-family: "Narkiss-Extended-Medium";
+  font-size: 15.7px;
+}
+
+.space-div {
+  width: 25vw;
+}
+
+.edit-details {
+  display: flex;
+  align-items: flex-start;
+  width: 70vw;
+  margin-right: 20vw;
+}
+
+.name-editor {
+  transform-origin: right top; /* Ensure rotation around the left center */
+  display: flex;
+  align-items: flex-start;
+  margin-top: 2vh;
+  color: #ebff00;
+}
+
+.edit-name {
+  font-family: "HaimG";
+  font-size: 80px;
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+}
+
+.editor-name {
+  font-family: "Narkiss-Extended-Regular";
+  font-size: 16px;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+}
+
+.about-paragraph {
+  display: flex;
+  align-items: flex-start;
+  width: 49vw;
+  margin-right: 20vw;
+}
+
+.about-edit {
+  color: #f3f2f6;
+  font-size: 15.7px;
+  font-family: "Narkiss-Extended-Regular";
+  line-height: 1.6;
+  padding: 20px 20px 0px 20px;
+  overflow-y: auto;
+  width: 60%;
+  height: 90vh;
+}
+
+.about-edit p {
+  margin-bottom: 15px;
+}
+
+.separating-stars {
+  color: #ebff00;
+  font-family: "HaimG";
+  font-size: 32px;
+}
+
+.edit-credits {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-credits p {
+  margin-bottom: 2px;
+}
+
+.all-types {
+  margin-top: 40px;
+}
+
+.article-types-section {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.all-articles {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-item {
+  display: flex;
+  align-items: flex-end;
+  padding: 16px 0px;
+  width: fit-content;
+}
+
+.article-type {
+  font-family: "Narkiss-Extended-Regular";
+  background-color: #1f1f1f;
+  color: #ebff00;
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+  display: flex;
+  justify-content: center;
+  padding: 3px 5px;
+}
+
+.article-title-item {
+  font-family: "HaimG";
+  color: #1f1f1f;
+  font-size: 80px;
+  width: fit-content;
+  line-height: 0.7em;
+  margin: 0px 10px 0px 20px;
+  transition: letter-spacing 0.2s;
+}
+
+.article-item:hover {
+  background-color: #1f1f1f;
+  color: #ebff00;
+}
+
+.article-item:hover .article-title-item {
+  background-color: #1f1f1f;
+  color: #ebff00;
+  letter-spacing: 0.1rem;
+}
+
+.article-writer {
+  font-family: "Narkiss-Extended-Regular";
+  width: 90px;
+}
+
+.team {
+  /* width: 45vw; */
+  color: #f3f2f6;
+  font-size: 15.7px;
+  font-family: "Narkiss-Extended-Regular";
+  line-height: 1.6;
+  padding: 20px 20px 0px 20px;
+  overflow-y: auto;
+}
+
+.team p {
+  margin-bottom: 10px;
+}
+
+.team-credits {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.team-credits p {
+  margin-bottom: 0px;
+}
+
+/* .about-yalkut {
+  display: flex;
+  align-items: flex-start;
+  margin-right: 3vw;
+  width: 50%;
+  height: 100vh; 
+} */
+
+.about-yalkut {
+  /* padding: 20px 20px 0px 20px; */
+  display: flex;
+  align-items: flex-start;
+  margin-right: 0.5vw;
+  /* overflow-y: auto; */
+  width: 80%;
+  height: 100vh; /* Set height to full viewport height */
+}
+
+.yalkut-text {
+  color: #f3f2f6;
+  font-size: 15.7px;
+  font-family: "Narkiss-Extended-Regular";
+  line-height: 1.6;
+  padding: 20px 20px 0px 20px;
+  overflow-y: auto;
+  height: 87vh;
+}
+
+.yalkut-text p {
+  margin-bottom: 20px;
+}
+
+.all-departments {
+  position: relative;
+  width: 80%;
+  height: calc(100vh - 130px);
+  cursor: pointer;
+}
+
+.department-container {
+  position: absolute;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.department-container-content {
+  transition: transform 0.3s ease-in-out;
+}
+
+.department-container:hover {
+  transform: rotate(var(--rotate-angle));
+}
+
+.department-title {
+  font-family: "HaimG";
+  font-size: 64px;
+  padding: 25px;
+  background-color: #f3f2f6;
+  border: 1px solid #1f1f1f;
+}
+
+@media (max-width: 768px) {
+  /* … */
+}
+
+@media (max-width: 1050px) {
+  .wrapper {
+    overflow: hidden;
+  }
+
+  .header {
+    padding: 0px 20px 30px 0px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu {
+    font-size: 13.2px;
+    width: 90%;
+  }
+
+  .menu img {
+    height: 50%;
+  }
+
+  .main-content {
+    flex-direction: column;
+    padding: 0px 10px 0px 20px;
+    overflow-y: auto;
+    height: 100%;
+    height: calc(100vh - 40px);
+    overflow-x: hidden;
+  }
+
+  .sheet-container {
+    transform: rotate(180deg);
+    transform-origin: center center; /* Reset rotation */
+  }
+
+  .sheet-container-content {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .sheet-title {
+    font-size: 36px;
+    padding: 15px;
+    writing-mode: horizontal-tb; /* Reset writing mode */
+  }
+
+  .sheet-date {
+    font-size: 11px;
+    width: 28px; /* Ensures it takes the full width of the container */
+    transform: rotate(0deg); /* Reset rotation */
+    writing-mode: vertical-rl;
+  }
+
+  .edit-details {
+    overflow-y: auto;
+    flex-direction: column;
+    margin-right: 1vw;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .name-editor {
+    flex-direction: column-reverse; /* Align items vertically */
+    margin-top: 1vh;
+    transform: rotate(0deg); /* Ensure it's not rotated */
+    writing-mode: horizontal-tb; /* Ensure writing mode is horizontal */
+    margin-right: 10px;
+  }
+
+  .editor-name,
+  .edit-name {
+    transform: rotate(0deg); /* Ensure individual items are not rotated */
+    writing-mode: horizontal-tb; /* Ensure writing mode is horizontal */
+    margin-bottom: 2px; /* Add spacing between the items */
+  }
+
+  .edit-name {
+    font-size: 54px;
+  }
+
+  .about-edit {
+    width: 100%;
+    padding: 10px 10px 0px 10px;
+    overflow-y: hidden;
+  }
+
+  .about-edit p {
+    font-size: 13.6px;
+  }
+
+  .footer {
+    padding: 5px 20px;
+  }
+
+  .article-title-item {
+    font-size: 36px;
+    margin: 0px 10px 0px 8px;
+  }
+
+  .article-writer {
+    font-size: 12px;
+  }
+
+  .team {
+    width: 100%;
+    padding: 10px 10px 0px 10px;
+    font-size: 13.6px;
+    overflow: hidden;
+  }
+
+  .article-content {
+    flex-direction: column;
+    width: 100%;
+    margin-right: 40px;
+  }
+
+  .article-section {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: flex-end;
+    width: 100vw;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    display: none;
+  }
+
+  .special {
+    font-size: 36px;
+  }
+
+  .section-content {
+    font-size: 13.6px;
+    overflow-y: hidden;
+    position: relative;
+    top: 0;
+    width: 90%;
+    text-align: right;
+    max-height: 100%;
+  }
+
+  .section-content-container {
+    padding: 15px 10px 0px 10px;
+  }
+
+  .section-image-container {
+    padding: 0px 0px 0px 0px;
+  }
+
+  .section-title-small {
+    display: block;
+    padding: 0px 10px 0px 10px;
+    background-color: #1f1f1f;
+    color: #f3f2f6;
+    font-family: "HaimG";
+    font-size: 22px;
+  }
+
+  .team-credits {
+    width: 92%;
+  }
+
+  .about-yalkut {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 0vw;
+  }
+
+  .yalkut-text {
+    overflow: hidden;
+    font-size: 13.6px;
+  }
+
+  .department-title {
+    font-size: 32px;
+    padding: 15px;
+  }
+
+  .all-departments {
+    position: absolute;
+    /* display: none; */
+  }
+
+  .about-paragraph {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 2vw;
+  }
+
+  .indent-paragraph {
+    margin-right: 15px;
+    font-size: 16.8px;
+  }
+}
